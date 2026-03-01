@@ -21,7 +21,7 @@ This project utilizes a sanitized version of the **ModCloth** e-commerce dataset
 * **Target Variable:** `fit` (Multiclass: fit, small, large)
 * **Pre-Purchase Features Used:** `hips`, `height_in`, `size`, `bra size`, `cup size`, `category`.
 
-## 🔬 Methodology & The Ablation Study
+## Methodology & The Ablation Study
 The project represents a critical evolution from "Naive" early models to a Production-Ready engine via a strict ablation study.
 
 ### 1. Leakage-Free Data Engineering
@@ -33,7 +33,7 @@ Early exploratory models achieved artificially high accuracies and simulated sav
 * **Iteration 2:** After removing reviews, the model shifted reliance to the `length` feature. Domain analysis revealed this was not a physical measurement, but a subjective, post-purchase interpretation of drape by the customer.
 * **Iteration 3 (The Production Engine):** In our final ablation step, all post-purchase and interpretive features were ruthlessly purged. The models were forced to compete on a purely objective, 100% pre-purchase dataset to simulate a true remote order.
 
-## 📊 Interpreting the Metrics: The Accuracy Paradox
+## Interpreting the Metrics: The Accuracy Paradox
 The final production model achieved an overall accuracy of 43%. In the context of subjective, imbalanced tailoring data and an asymmetric cost matrix, raw accuracy is a vanity metric. 
 
 Our objective was **Risk Mitigation via Recall**. Because a False Positive costs £50 and a False Alarm (False Negative) only costs £10, the model is financially optimized to be highly sensitive. It deliberately sacrifices Precision (~0.22 for minority classes) to maximize Recall on expensive sizing errors. A highly accurate model that misses physical remakes will bankrupt a tailor; a 43% accurate model that catches the critical errors saves the marketplace £55,290.
